@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Javacript React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // Seleksi element div dengan id 'app'
+      const app = document.getElementById("app");
+
+      // Buat elemen h1 dan h3 baru
+      const header = document.createElement("h1");
+      const title = document.createElement("h3");
+
+      // buat text node untuk element h1 dan h3 tadi
+      const headerContent = document.createTextNode("Learning React With WPU");
+      const titleContent = document.createTextNode(
+        "Learning Javascript react with wpu mantaap"
+      );
+
+      // Append text ke dalam h1 dan h3
+      header.appendChild(headerContent);
+      title.appendChild(titleContent);
+
+      // simpan elemen h1 dan h3 didalam div
+      app.appendChild(header);
+      app.appendChild(title);
+    </script>
+  </body>
+</html>

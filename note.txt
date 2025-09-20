@@ -1,0 +1,34 @@
+Learning React JS with WPU
+
+1. What is react ? 
+	- react is library javascript for creating a (antarmuka) user (UI) yang interaktif
+	- Antarmuka user is a element pada layer yang dapat show and interaction with user
+ 	- Disebut library because menyediakan function for membangun UI, but whatever developer for used this function
+	- Un-opinionated (cara menggunakannnya tidak teralu diatur)
+	- menyebabkan ekosistem berkembang	
+	- Tools pihak kegitanya banyak
+
+2. Latihan create code Javascript 
+	- Membuat code sederhana dengan html dan js untuk menampilkan beberapa tampilan
+
+3. React js 
+	- Mempersingkat penulisan js dalam menampilkan beberpaa komponen didalam html dan javascript
+	- Membuat code html dengan react
+
+4. Prerequisite (yang harus disiapkan untuk learning react)
+	- htmls & css
+	- Javascript fundamentals
+	- DOM
+	- Modern Javascript (ES6)
+	- Git & CLI
+	- Package manager (Node js & NPM)
+
+5. Konsep React	
+	- Components
+		1. Function pada javascript
+		2. Function harus diawal dengan huruf besar
+		3. Function mengambalikan element ui
+	- Props
+		1. properti yang bisa dikirimkan sebagai media informasi untuk sebuah komponen dan props ditangkap sebagai object saat komponen dibuat
+	- State (data yang berubah seiring waktu)
+		1. 

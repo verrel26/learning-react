@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel/jsx -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      //   Menggunakan gaya component
+      //   function Header(props) {
+      //     return (
+      //       <h2 className="heading">Learning react with {props.namaUser} 🚀</h2>
+      //     );
+      //   }
+
+      //   Menggunakan gaya component ternary
+      function Header({ namaUser }) {
+        return (
+          <h1 className="heading">
+            Learning react with {namaUser ? namaUser : "WPU"} 🚀
+          </h1>
+        );
+      }
+
+      //   Memanggil component yang sebelumnya dengan component yang baru (TEST)
+      //   function HomePage() {
+      //     return (
+      //       <>
+      //         <Header />
+      //         <Header namaUser="Amaik" />
+      //       </>
+      //     );
+      //   }
+
+      // Melakukan penampilan data dengan perulangan
+      function HomePage() {
+        const students = ["Panjul", "Amaik", "Colak"];
+
+        // button Like
+        const [likes, setLikes] = React.useState(0);
+
+        function handleClick() {
+          setLikes(likes + 1);
+        }
+
+        return (
+          <>
+            <Header />
+            <ul>
+              {students.map((student) => (
+                <li key={student}>{student}</li>
+              ))}
+            </ul>
+
+            <button onClick={handleClick}>Like ({likes})</button>
+          </>
+        );
+      }
+
+      root.render(<HomePage />);
+
+      //   root.render(
+      //     <>
+      //       <img
+      //         src="assets/images/kegiatan.jpg"
+      //         width="200"
+      //         alt="Picture test"
+      //       />
+      //       <p
+      //         onClick={(e) => {
+      //           alert("Ok Guys");
+      //         }}
+      //       >
+      //         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla
+      //         praesentium consequatur consectetur totam tempore quidem, impedit
+      //         doloribus id corrupti veniam voluptatum enim esse laboriosam placeat
+      //         magni harum quia. Unde, adipisci.
+      //       </p>
+      //     </>
+      //   );
+    </script>
+  </body>
+</html>
