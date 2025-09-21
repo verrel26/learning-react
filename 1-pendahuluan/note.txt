@@ -31,4 +31,8 @@ Learning React JS with WPU
 	- Props
 		1. properti yang bisa dikirimkan sebagai media informasi untuk sebuah komponen dan props ditangkap sebagai object saat komponen dibuat
 	- State (data yang berubah seiring waktu)
-		1. 
+	
+
+INSTALASI REACT JS
+
+1. 
