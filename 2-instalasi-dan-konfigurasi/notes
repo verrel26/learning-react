@@ -1,0 +1,17 @@
+Learning React js
+
+1. Install vitejs
+
+   - pnpm create vite (harus sudah menginstall node js dan diterminal harus run administation)
+
+2. Install semua komponen yang ada
+
+   - pnpm install
+
+3. Menjalankan program
+
+   - pnpm run dev
+
+4. Semua code yang dibuatkan sekarang nanti ketika akan diterjemahkan ke html,js,css yang disebut dengan buildtools,sama kayak kita membuat code dilokaal namun ketika ingin dipost ke server maka akan dilakukan build dengan cara "pnpm run build", nanti akan muncul folder dist itulah code yang telah berhasil kita build dan cara membukanya masuk ke folder build (dist) dengan vscode yang berbeda dan buka seperti biasa (Open with live server)
+
+5. Buat baru
