@@ -1,0 +1,67 @@
+LEARNING REACT JS 
+
+
+Component
+    - Komponen pada rect pada dasarnya adalah function JavaScript
+    - Komponen adalah bagian UI yang memiliki logika dan tampilan sendiri
+    - Merupakan proses melakukan compose element dengan yang baik dan benar
+
+Cara/Tips Memecah UI jadi Component
+    - Pisahkan UI secara logis, antara content & layout
+    - Pikirkan reusability
+    - Perhatikan kompleksitas
+    - Gaya / kebiasan coding
+    - Mulai dari komponen besar, lalu pecah
+
+Jika dari beberapa pertanyaan ini semua jawabannya 'IYA' maka butuh komponen baru
+    - Apakah di dalam komponen terdapat 'bagian' konten atau layout yang bisa dipisahkan?
+    - Apakah mungkin untuk digunakan kembali? 
+    - Apakah komponen melakukan terlalu banyak hal?
+    - Apakah terlalu bergantung pada banyak props?
+    - Apakah JSX nya jadi terlalu kompleks? 
+
+Latihan Materi Komponen - Anime App
+    - npm create vite
+    - cd nama-folder
+    - npm install
+    - npm run dev
+    - hapus file index.css
+    - copy template dari WPU (App.jsx dan App.css) dan sesuaikan file main.jsx
+        Mengubah dan menyesuaikan Komponen
+            1. 
+
+Kategori Component
+    - Stateless / presentational Component
+        - Tidak memiliki state
+        - Menerima props untuk menampilkan data / konten
+        - Biasanya komponen kecil dan reusable
+            Ex: Header (Logo)
+        - Bertujuan hanya menampilkan data
+    - Stateful Component
+        - komponen yang memiliki state / komponennya di buat di state itu
+        - bisa di buat reusable
+            Ex: Search
+    - Structural
+        - Berperan untuk membuat struktur aplikasi (layout, screen, pages)
+        - Dihasilkan dari komposisi
+        - digunakan untuk saat menggabungkan komponen lain
+            Ex: komponen main
+        - Berukuran besar dan biasanya reusable
+
+Masalah pada komponen
+    - Prop Drilling (menarok sesuatu pada komponen secara berulang-ulang padahal ada satu komponen itu tidak butuh props itu)
+        - Mengatasi Prop Drilling
+            * Component Composition = Mengkomposisikan komponen dengan benar
+                1. Sebuah teknik untuk merancang/membuat komponen
+                2. Proses memecah bagian-bagian menjadi komponen kecil, lalu menggabungkan menjadi komponen yang lebih besar
+                3. Bertujuan agar komponen tersebut mudah untuk di kelola dan digunakan kembali
+                Manfaat
+                    * Reusability: Komponen dapat dengan mudah digunakan kembali di berbagai tempat pada aplikasi kita
+                    * Modularity: Memecah UI menjadi komponen kecil agar mudah untuk dikelola dan dipahami
+                    * Seperation of Concerns: Setiap komponen dapat fokus pada fungsionalitasnya yang spesifik, agar mudah untuk di-test/debug
+                    * Code Maintainability: Mudah untuk di ubah dikemudian hari
+                Caranya
+                    * Buat komponen agar mengerjakan hal yang spesifik (seperti materi awal yang sudah di pahami tadi)
+                    * Gunakan 'Container Component'
+                        - Memanfaatkan prop spesial: children
+                        - Bisa digunakan untukm memperbaiki prop drilling
