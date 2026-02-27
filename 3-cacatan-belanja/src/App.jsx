@@ -15,7 +15,7 @@ const growceryItems = [
   },
   {
     id: 3,
-    name: "Air Mineral",
+    name: "Air Mineral xxx",
     quantity: 3,
     checked: false,
   },
