@@ -64,3 +64,41 @@ Masalah pada komponen
                     * Gunakan 'Container Component'
                         - Memanfaatkan prop spesial: children
                         - Bisa digunakan untukm memperbaiki prop drilling
+
+
+
+MEMBUAT PROJECT BARU
+1. Buat folder project
+    - npx create-react-app .
+    - node_modules = kumpulan library bawaan react js
+    - public = apa yang dikeluar pada react js
+    - src = tempat file codingan
+        1. index.js = file inti dari react js dimana di sana tempat file di arahakan
+        2. App.js = file yang digunakan untuk mengubah tampilan home dari react js
+
+2. Di dalam React ada 2 komponen untuk merender ke dalam metode
+    1. Functional Component
+        function namafunction(props) {
+            return (
+                <div>
+                    <h1>INTRODUCTION</h1>
+                    <p>Hallo Panjul</p>
+                </div>
+            );
+        }
+
+        export default namafunction;
+    2. Class Component
+        import React from "react";
+
+        class Profile extends React.Component {
+            render() {
+                return (
+                    <div><h1>hallo Panjul</h1></div>
+                )
+            }
+        }
+
+        export default Profile
+
+3. Materi selanjutnya masih di Dea Afrizal - React JS Unit Test Ohhh Unit Test...
