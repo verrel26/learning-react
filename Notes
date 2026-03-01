@@ -69,7 +69,9 @@ Masalah pada komponen
 
 MEMBUAT PROJECT BARU
 1. Buat folder project
-    - npx create-react-app .
+    - npx create-react-app . (ini cara lama,tapi masih bisa digunakan)
+    - npx create-vite . atau npx create-vite@latest atau jika belum ada folder npm create vite@latest nama-folder - (ini cara baru/modern)
+        1. Pilih React / React SWC (lebih cepat)
     - node_modules = kumpulan library bawaan react js
     - public = apa yang dikeluar pada react js
     - src = tempat file codingan
@@ -102,3 +104,30 @@ MEMBUAT PROJECT BARU
         export default Profile
 
 3. Materi selanjutnya masih di Dea Afrizal - React JS Unit Test Ohhh Unit Test...
+    - Buat React project
+    - Install package depency untuk kebutuhan unitest
+        1. npm i vitest
+        2. npm i @testing-library/react @testing-library/dom
+        3. npm i happy-dom
+        4. npm i @testing-library/jest-dom
+    - Setelah install beberapa pacakge depency, konfigurasi package yang di vite.config.js 
+        1. environtment = Di gunakan untuk menjalankan unit test dengan menggunakan Vitest
+        2. setupFiles = Di gunakan untuk menjalankan file setupTests.js sebelum menjalankan unit test
+    - Tambahkan script function baru untuk menjalankan unitest, pada package.json bagian script 
+        "scripts": {
+            "dev": "vite",
+            "build": "vite build",
+            "lint": "eslint .",
+            "preview": "vite preview",
+            "test:unit": "vitest" # menambahkan script untuk menjalankan unit test dengan vitest
+        },
+    - Tambahkan folder untuk test file  
+        1. src/tests/nama-file.test.jsx (nama file yang akan di test)
+        2. src/tests/nama-file.js
+    - Pada file App.tes.jsx 
+        1. Buat code untuk menjalankan proses pengetesan/percobaan salah satu file pada src
+        2. Setelah selesai, cobakan di terminal dengan cara - npm run test:unit
+    - Menjalankan/mencoba di web
+        1. Tambahkan "--ui" pad bagian script 
+            - "test:unit": "vitest --ui"
+    
