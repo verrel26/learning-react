@@ -1,0 +1,25 @@
+LEARNING REACT JS WITH BUILD E-COMMERCE
+
+
+Materi = https://www.youtube.com/watch?v=Wt3isV2irrA&list=PLpPqplz6dKxX0QrtyrJNHJs8uubxueBhA
+    - Materi validasi form lagi - menit: 41.37
+
+
+Pembuatan Project
+
+1. Build Folder - namaproject (E-COMMERCE)
+2. npx create-vite@latest
+3. React
+4. Javascript
+5. Yes
+6. Yes
+
+Notes
+
+1. Folder Public untuk menyimpan assets, sama seperti Laravel
+2. JSX = cara React untuk merender UI
+3. Membuat beberapa materi di dalam file App.jsx
+4. Components = cara memisahkan bagian dari UI
+    - Membuat folder Components
+    - Buat file SignUpForm.jsx di dalam folder Components
+
