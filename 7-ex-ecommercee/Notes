@@ -1,9 +1,6 @@
 LEARNING REACT JS WITH BUILD E-COMMERCE
 
-
-Materi = https://www.youtube.com/watch?v=Wt3isV2irrA&list=PLpPqplz6dKxX0QrtyrJNHJs8uubxueBhA
-    - Materi validasi form lagi - menit: 41.37
-
+Materi = https://www.youtube.com/watch?v=Wt3isV2irrA&list=PLpPqplz6dKxX0QrtyrJNHJs8uubxueBhA - Materi validasi form lagi - menit: 41.37
 
 Pembuatan Project
 
@@ -20,6 +17,12 @@ Notes
 2. JSX = cara React untuk merender UI
 3. Membuat beberapa materi di dalam file App.jsx
 4. Components = cara memisahkan bagian dari UI
-    - Membuat folder Components
-    - Buat file SignUpForm.jsx di dalam folder Components
-
+   - Membuat folder Components
+   - Buat file SignUpForm.jsx di dalam folder Components
+5. Install react hook untuk form - untuk function validasi form
+   - npm i react-hook-form
+6. Instal react-route-dom - untuk mengelola navigasi dan perutean (routing) / arah halaman file tanpa perlu me reload halaman
+   - npm install react-router-dom
+   - Edit halaman main.jsx - untuk menyesuaikan perutean package yang di instal tadi
+7. Membuat sistem login sederhana
+   -

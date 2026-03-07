@@ -1,18 +1,128 @@
-import { useState } from "react";
-import "./App.css";
-import SignUpForm from "./Components/SignUpForm";
+import { useContext, useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { AuthContext } from "./AuthContext.js";
+// import "./App.css";
+// import SignUpForm from "./components/SignUpForm";
 
-// 5. Membuat latihan dengan file terpisah untuk komponen
-function App() {
+function Navbar() {
+  const { user, logout } = useContext(AuthContext);
   return (
-    <div>
-      <SignUpForm />
+    <header
+      style={{
+        padding: "1rem 1.5rem",
+        marginBottom: "1rem",
+        borderBottom: "1px solid #e5e7eb",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
+      <nav style={{ display: "flex", gap: "1rem" }}>
+        <Link to="/">Home</Link>
+        <Link to="/profile">Profile</Link>
+      </nav>
+
+      <div>
+        {!user.isAuth ? (
+          <Link to="/login">Login</Link>
+        ) : (
+          <button onClick={() => logout()}>Logout</button>
+        )}
+      </div>
+    </header>
+  );
+}
+
+function HomePage() {
+  const { user } = useContext(AuthContext);
+  return (
+    <div style={{ padding: "0 1.5rem" }}>
+      <h1>Home</h1>
+
+      {user.isAuth ? (
+        <p>Welcome back, {user.name}!</p>
+      ) : (
+        <p>Please log in to view your profile.</p>
+      )}
     </div>
   );
 }
-// Component = Function that returns JSX
 
-export default App;
+function ProfilePage() {
+  const { user } = useContext(AuthContext);
+  return (
+    <div style={{ padding: "0 1.5rem" }}>
+      <h1>Profile</h1>
+      <p>Name: {user.name}</p>
+      <p>Here you could show more user info from the context</p>
+    </div>
+  );
+}
+
+function LoginPage() {
+  const [name, setName] = useState("");
+  const { user, login } = useContext(AuthContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!name.trim()) return;
+    login(name);
+  }
+
+  return (
+    <div style={{ padding: "0 1.5rem" }}>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
+        <label>
+          Name
+          <input
+            type="text"
+            placeholder="Type any name..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            style={{ marginLeft: "0.5rem" }}
+          />
+        </label>
+        <button type="submit" style={{ marginLeft: "0.5rem" }}>
+          Login
+        </button>
+      </form>
+      {user.isAuth && <p>Welcome, {user.name}!</p>}
+    </div>
+  );
+}
+
+export default function App() {
+  const [user, setUser] = useState({ name: "", isAuth: false });
+
+  function login(name) {
+    setUser({ name: name, isAuth: true });
+  }
+
+  function logout(name) {
+    setUser({ name: "", isAuth: false });
+  }
+
+  return (
+    <div>
+      <AuthContext.Provider value={{ user, login, logout }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="*"
+            element={<h1 style={{ padding: "0 1.5rem" }}>404 Not Found</h1>}
+          />
+        </Routes>
+      </AuthContext.Provider>
+
+      <footer style={{ padding: "1rem 1.5rem", marginTop: "2rem" }}>
+        <p>&copy; 2026 My App. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
 
 // Component
 // function Greeting(props) {
@@ -23,7 +133,6 @@ export default App;
 //     </>
 //   );
 // }
-
 // function Breakdown({ name, age }) {
 //   return (
 //     <>
@@ -34,7 +143,6 @@ export default App;
 //   );
 // }
 // Learning React - 6. Component, Props, dan State
-
 // 1. Proses pembentukan komponen utama
 // function App() {
 //   const title = "Learning React";
@@ -56,12 +164,10 @@ export default App;
 //     </>
 //   );
 // }
-
 // 2. Proses penampilan bersyarat
 // function App() {
 // const title = "Learning React";
 // const showBreakdown = false; // Ubah nilai showBreakdown menjadi true untuk menampilkan komponen Breakdown
-
 // const [showBreakdown, setShowBreakdown] = useState(false);
 // function toggleGreeting() {
 // Ubah nilai showBreakdown menjadi true untuk menampilkan komponen Breakdown
@@ -71,14 +177,12 @@ export default App;
 // } else {
 //   setShowBreakdown(true);
 // }
-
 // Cara 2
 // setShowBreakdown(!showBreakdown);
 // }
 // return (
 // <>
-{
-  /* <Greeting title={title} /> */
+/* <Greeting title={title} /> */ {
 }
 {
   /*  Penampilan bersyarat untuk komponen Breakdown */
@@ -176,3 +280,45 @@ export default App;
 //     </div>
 //   );
 // }
+
+// 5. Membuat latihan dengan file terpisah untuk komponen
+// function App() {
+//   return (
+//     <div>
+//       <SignUpForm />
+//     </div>
+//   );
+// }
+
+// 6. Membuat latihan dengan file terpisah untuk komponen dan menggunakan react-router-dom
+// function HomePage() {
+//   return <h1>Home Page</h1>;
+// }
+
+// function AboutPage() {
+//   return <h1>About Page</h1>;
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <nav style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+//         <Link to="/">Home</Link>
+//         <Link to="/about">About</Link>
+//         <Link to="/signup">Sign Up</Link>
+//       </nav>
+
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         <Route path="/about" element={<AboutPage />} />
+//         <Route path="/signup" element={<SignUpForm />} />
+//         <Route path="*" element={<h1>404 Not Found</h1>} />
+//       </Routes>
+//       <footer>
+//         <p>&copy; 2026 My App. All rights reserved.</p>
+//       </footer>
+//     </div>
+//   );
+// }
+
+// export default App;
