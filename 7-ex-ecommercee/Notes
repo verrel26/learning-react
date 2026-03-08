@@ -25,3 +25,8 @@ Notes
    - npm install react-router-dom
    - Edit halaman main.jsx - untuk menyesuaikan perutean package yang di instal tadi
 7. Membuat sistem login sederhana
+8. Membuat sistem E-Commerce sederhana
+   - Install project - npx create-vite@latest
+   - nama project
+   - Yes
+   - Yes
