@@ -1,6 +1,6 @@
 LEARNING REACT JS WITH BUILD E-COMMERCE
 
-Materi = https://www.youtube.com/watch?v=Wt3isV2irrA&list=PLpPqplz6dKxX0QrtyrJNHJs8uubxueBhA - Materi validasi form lagi - menit: 41.37
+Materi = https://www.youtube.com/watch?v=Wt3isV2irrA&list=PLpPqplz6dKxX0QrtyrJNHJs8uubxueBhA - Materi validasi form lagi - menit: 1.53.11
 
 Pembuatan Project
 
@@ -30,3 +30,11 @@ Notes
    - nama project
    - Yes
    - Yes
+   - Instal beberapa package
+     1. npm i react-router-dom
+     2. npm i react-hook-form
+   - Buat folder
+     1. pages = untuk beberapa page (Home, Auth, Checkout)
+     2. navbar = untuk tampilan navbar
+     3. data = untuk API
+     4. components = untuk memisahkan beberapa function
