@@ -38,3 +38,12 @@ Notes
      2. navbar = untuk tampilan navbar
      3. data = untuk API
      4. components = untuk memisahkan beberapa function
+   - Membuat halaman Auth
+     1. pages - Auth.jsx
+        - Sign Up
+        - Sign In
+   - Membuat API
+     1. buat folder - context
+        - AuthContext.jsx
+        - Sebenarnya bukan API sempurna namun logic ini bisa membuat akun login seperti menggunakan API Auth
+        - Simpan hasil signup di LocalStorage, ini untuk frontend sebelum masuk API

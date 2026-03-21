@@ -62,10 +62,10 @@ export default function SignUpForm() {
                   value: 4,
                   message: "Password must be at least 4 characters",
                 },
-                maxLength: {
-                  value: 12,
-                  message: "Password must be less than 12 characters",
-                },
+                // maxLength: {
+                //   value: 30,
+                //   message: "Password must be less than 12 characters",
+                // },
               })}
             />
           </label>
