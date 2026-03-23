@@ -47,3 +47,10 @@ Notes
         - AuthContext.jsx
         - Sebenarnya bukan API sempurna namun logic ini bisa membuat akun login seperti menggunakan API Auth
         - Simpan hasil signup di LocalStorage, ini untuk frontend sebelum masuk API
+   - Membuat halaman Product
+     1. Sesuaikan di App.jsx untuk halaman products
+     2. Membuat halaman pages/ProductDetail.js
+   - Membuat halaman CartContext.jsx
+     1. context/CartContext.js
+   - Membuat halaman Checkout.jsx
+     1. pages/Checkout.jsx
