@@ -3,11 +3,10 @@ import { createContext, useState, useContext } from "react";
 const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState(
-    localStorage.getItem("currentUserAmil")
-      ? { email: localStorage.getItem("currentUserAmil") }
-      : null,
-  );
+  const [user, setUser] = useState(() => {
+    const savedEmail = localStorage.getItem("currentUserEmail");
+    return savedEmail ? { email: savedEmail } : null;
+  });
 
   function signUp(email, password) {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
@@ -22,7 +21,7 @@ export default function AuthProvider({ children }) {
 
     setUser({ email });
 
-    return { successs: true };
+    return { success: true };
   }
 
   function login(email, password) {

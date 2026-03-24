@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
 export default function SignUpForm() {
   // MANUAL
@@ -19,6 +20,14 @@ export default function SignUpForm() {
       `Account created!, wtih email: ${data.email} and password: ${data.password}`,
     );
   }
+  ProductCard.propTypes = {
+    product: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    }).isRequired,
+  };
 
   return (
     <div style={{ maxWidth: 400, margin: "2rem auto" }}>
