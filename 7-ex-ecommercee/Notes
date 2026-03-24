@@ -54,3 +54,13 @@ Notes
      1. context/CartContext.js
    - Membuat halaman Checkout.jsx
      1. pages/Checkout.jsx
+   - Maintenance code
+     1. Penjelasan main.jsx (Entry point)
+        - StrictMode = untuk mendeteksi bug potensial memperingati penggunaan API yang tidak aman seperti "debug mode"
+        - BrowerRouter = untuk mengatur navigasi tanpa reload, seperti "router/web.php" di laravel, tapi client-side
+        - App = komponen utama - semua komponen lain dirender disini, seperti "layout/app.blade.php di Laravel"
+     2. Penjelasan App.jsx (Master layout + routing)
+        - App.jsx = merupakan master layout, jika di laravel sama seperti app.blade.php
+        - AuthProvider = paling atas karena pembungkus global jadi seperti kantor pusat apa yang berhubungan di dalam harus lewat ini dulu
+     3. Diagram Flow React App
+        - main.jsx -> StrictMode (debug mode) -> BrowserRouter (routing) -> App (komponen utama) -> AuthProvider (Simpan data login) -> CartProvider (Simpan data keranjang) -> Navbar (useAuth() userCart()) -> Routes (Routing(Home.jsx, Auth.jsx, Checkout.jsx Details.jsx))

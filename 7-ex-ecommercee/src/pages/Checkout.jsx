@@ -13,7 +13,7 @@ export default function Checkout() {
   const total = getCartTotal();
 
   function placeOrder() {
-    alert("Succesful Order!");
+    alert("Successful Order!");
     clearCart();
   }
 
@@ -23,7 +23,7 @@ export default function Checkout() {
         <h1 className="page-title">Checkout</h1>
         <div className="checkout-container">
           <div className="checkout-items">
-            <h2 className="checkout-section-title">Order Sumary</h2>
+            <h2 className="checkout-section-title">Order Summary</h2>
             {cartItems.map((item) => (
               <div className="checkout-item" key={item.id}>
                 <img
@@ -72,7 +72,7 @@ export default function Checkout() {
               </div>
             ))}
           </div>
-          <div className="checkout-sumary">
+          <div className="checkout-summary">
             <h2 className="checkout-section-title">Total</h2>
             <div className="checkout-total">
               <p className="checkout-total-label">Subtotal:</p>

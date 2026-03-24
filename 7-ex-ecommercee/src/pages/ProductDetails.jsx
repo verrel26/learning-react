@@ -8,21 +8,40 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate();
   const { addToCart, cartItems } = useCart();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   const foundProduct = getProductById(id); // untuk mendapatkan data dari API
+
+  //   if (!foundProduct) {
+  //     navigate("/");
+  //     return;
+  //   }
+
+  //   setProduct(foundProduct);
+  // }, [id]);
+
+  // if (!product) {
+  //   return <h1>Loading...</h1>;
+  // }
 
   useEffect(() => {
-    const foundProduct = getProductById(id); // untuk mendapatkan data dari API
-
-    if (!foundProduct) {
-      navigate("/");
-      return;
+    try {
+      const foundProduct = getProductById(id);
+      if (!foundProduct) {
+        throw new Error("Product not found!");
+      }
+      setProduct(foundProduct);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-
-    setProduct(foundProduct);
   }, [id]);
 
-  if (!product) {
-    return <h1>Loading...</h1>;
-  }
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="errror">{error}</div>;
 
   const productInCart = cartItems.find((item) => item.id === product.id);
 
