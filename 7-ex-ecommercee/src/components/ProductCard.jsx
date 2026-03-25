@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { memo, useEffect } from "react";
+import { useMemo, memo } from "react";
 import { getProductById } from "../data/products";
 
 export default function ProductCard({ product }) {
@@ -13,23 +13,8 @@ export default function ProductCard({ product }) {
     [cartItems, product.id],
   );
 
-  useEffect(() => {
-    async function loadProduct() {
-      setLoading(true);
-      try {
-        const data = await getProductById(id);
-        setProduct(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadProduct();
-  }, [id]);
-
-  const productQuantityLabel = productInCart
-    ? `(${productInCart.quantity})`
+  const productQuantityLabel = productInCart2
+    ? `(${productInCart2.quantity})`
     : "";
   return (
     <div className="product-card">

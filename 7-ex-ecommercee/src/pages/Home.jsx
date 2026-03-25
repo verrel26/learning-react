@@ -4,18 +4,12 @@ import { getProducts } from "../data/products";
 
 export default function Home() {
   // untuk mendapatkan nilai product
-  const [searchTerm, setSearchTerm] = useState("");
   const products = getProducts();
-  const [page, setPage] = useState(1);
-  const productsPerPage = 6;
-  const totalPages = Math.ceil(products.length / productsPerPage);
-  const displayProducts = products.slice(
-    (page - 1) * productsPerPage,
-    page * productsPerPage,
-  );
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const filterProducts = products.filter((products) =>
-    products.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()),
+  // Filter berdasarkan search
+  const filterProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -26,22 +20,28 @@ export default function Home() {
           Discover amazing products at great prices
         </p>
       </div>
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.validationMessage)}
-      />
-      <ProductCard products={filterProducts} />
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={setPage}
-      />
       <div className="container">
-        <h2 className="page-title">Our Products</h2>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="🔍 Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {searchTerm && (
+            <button
+              className="search-clear"
+              onClick={() => setSearchTerm("")}
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="container">
         <div className="product-grid">
-          {products.map((product) => (
+          {filterProducts.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
         </div>
