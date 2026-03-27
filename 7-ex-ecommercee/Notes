@@ -64,3 +64,45 @@ Notes
         - AuthProvider = paling atas karena pembungkus global jadi seperti kantor pusat apa yang berhubungan di dalam harus lewat ini dulu
      3. Diagram Flow React App
         - main.jsx -> StrictMode (debug mode) -> BrowserRouter (routing) -> App (komponen utama) -> AuthProvider (Simpan data login) -> CartProvider (Simpan data keranjang) -> Navbar (useAuth() userCart()) -> Routes (Routing(Home.jsx, Auth.jsx, Checkout.jsx Details.jsx))
+
+   - Membuat Backhendnya (Node.js -> Express)
+     1. npm init -y = untuk membuat file package.json
+     2. npm install express cors dotenv = install dependencies
+     3. npm install -D nodemon = untuk sever auto-restart
+        - express -> Framework Backhendnya
+        - cors -> Agar react bisa akses API
+        - dotenv -> untuk environtment variabel
+        - nodemon -> Auto-restart saat code berubah
+     4. buat folder router, controllers, models, middleware, data, config
+     5. buat beberapa file kosong
+        - server.js -> backhend/server.js
+        - products.js, auth.js, cart.js -> backhend/routes
+        - productController.js, cartController.js, authController.js -> backhend/controllers
+        - Product.js, Cart.js, User.js -> backhend/models
+        - authMiddleware.js, errorMiddleware.js, -> backhend/middleware
+        - products.js -> backhend/data
+        - db.js -> backhend/config
+     6. develop file backhend/server.js
+     7. Test server
+        - node server.js atau jika sudah install nodemon npm run dev
+     8. Buat data dummy di backhend/data/products.js
+     9. Buat Product controllers -> backhend/controllers/productController.js
+     10. Buat Product route -> backhend/routes/products.js
+     11. Connect Route ke server -> update backhend/server.js
+     12. Tes API Products -> node server.js
+     13. Update Frontend dan sesuaikan dengan data backhend -> frontend/src/data/products.js
+     14. Membuat Auth API -> backhend
+         - Install dependencies = npm install bcryptjs jsonwebtoken (untuk hash password biar tidak terlihat di database)
+         - Install types = npm install -D @types/bcryptjs @tpyes/jsonwebtoken
+         - Buat dummy data
+           1. users.js -> backhend/data/users.js
+         - Buat AuthController 2. authController.js -> backhend/controllers/authController.js
+         - Buat Auth Routes -> backhend/routes/auth.js
+         - Buat Auth Middleware -> backhend/middleware/authMiddleware.js
+         - Update server -> backhend/server.js
+      15. Menyesuaiakan API di frontend
+         - services -> frontend/src/services/api.js (penyesuaian API baru, register dan login)
+         - AuthContext.js -> frontend/src/context/AuthContext.js 
+         - Auth.jsx -> frontend/src/pages/Auth.jsx
+         - Navbar.jsx -> frontend/scr/components/Navbar.jsx
+         - App.jsx -> frontend/src/App.jsx
