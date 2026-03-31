@@ -100,9 +100,20 @@ Notes
          - Buat Auth Routes -> backhend/routes/auth.js
          - Buat Auth Middleware -> backhend/middleware/authMiddleware.js
          - Update server -> backhend/server.js
-      15. Menyesuaiakan API di frontend
+     15. Menyesuaiakan API di frontend
          - services -> frontend/src/services/api.js (penyesuaian API baru, register dan login)
          - AuthContext.js -> frontend/src/context/AuthContext.js 
          - Auth.jsx -> frontend/src/pages/Auth.jsx
          - Navbar.jsx -> frontend/scr/components/Navbar.jsx
          - App.jsx -> frontend/src/App.jsx
+     16. Membuat API untuk Cart 
+         - cartControllers.js -> backhend/controllers/cartControllers.js
+         - cart.json -> backhend/routes/cart.js
+         - update server -> backhend/server.js
+     17. Update dan integrasikan API cart ke frontend
+         - api.js -> frontend/src/services/api.js
+         - CartContext.js -> frontend/src/context/CartContext.jsx
+         - Navbar.jsx -> frontend/src/components/Navbar.jsx
+   - INSTALL Database
+      1. 
+
