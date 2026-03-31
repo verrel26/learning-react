@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const productRoutes = require("./routes/products");
 const authRoutes = require("./routes/auth");
+const cartRoutes = require("./routes/cart");
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Import routes (nanti)
 // app.use("/api/products", require("./routes/products"));

@@ -6,6 +6,7 @@ const { protect } = require("../middleware/authMiddleware");
 // Public routes
 router.post("/register", register);
 router.post("/login", login);
+// router.post("/logout", logout);
 
 // Protect routes (butuh token)
 router.get("/me", protect, getMe);

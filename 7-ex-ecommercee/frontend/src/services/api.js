@@ -55,3 +55,47 @@ export async function getMe(token) {
   });
   return response.json();
 }
+
+// Cart
+export async function getCart(token) {
+  const response = await fetch(`${API_URL}/cart`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.json();
+}
+
+export async function addToCart(productId, quantity, token) {
+  const response = await fetch(`${API_URL}/cart/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ productId, quantity }),
+  });
+  return response.json();
+}
+
+export async function updateCart(productId, quantity, token) {
+  const response = await fetch(`${API_URL}/cart/${productId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ productId, quantity }),
+  });
+  return response.json();
+}
+
+export async function removeFromCart(productId, token) {
+  const response = await fetch(`${API_URL}/cart/${productId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.json();
+}

@@ -57,10 +57,10 @@ export default function AuthProvider({ children }) {
         localStorage.setItem("token", token);
         return { success: true };
       } else {
-        return { success: false, error: response.messsage };
+        return { success: false, error: response.message };
       }
     } catch (error) {
-      return { success: false, error: response.messsage };
+      return { success: false, error: response.message };
     }
   }
 
@@ -75,10 +75,10 @@ export default function AuthProvider({ children }) {
         localStorage.setItem("token", token);
         return { success: true };
       } else {
-        return { success: false, error: response.messsage };
+        return { success: false, error: response.message };
       }
     } catch (error) {
-      return { success: false, error: response.messsage };
+      return { success: false, error: response.message };
     }
   }
 
