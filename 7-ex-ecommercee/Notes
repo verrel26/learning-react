@@ -114,6 +114,14 @@ Notes
          - api.js -> frontend/src/services/api.js
          - CartContext.js -> frontend/src/context/CartContext.jsx
          - Navbar.jsx -> frontend/src/components/Navbar.jsx
-   - INSTALL Database
-      1. 
-
+   - INSTALL DATABASE - MongoDB
+      1. MongoDB
+         Instal mongoose = npm install mongodb
+         Setup database 
+      2. Buat file .env -> backhend/.env
+      3. Buat models -> backhend/models/User.js
+      4. Update server.js untuk Connect ke database -> backhend/server.js
+      5. Seed Product ke Datbase (dummy) -> backhend/seeds/products.js
+      6. Update package.json untuk Seed Script -> backhend/package.json
+      7. Seed Product
+         - cd backhend
