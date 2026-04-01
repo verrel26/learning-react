@@ -1,3 +1,5 @@
+require("dotenv").config();
+const connectDB = require("./config/db");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -6,6 +8,9 @@ const authRoutes = require("./routes/auth");
 const cartRoutes = require("./routes/cart");
 
 dotenv.config();
+
+// Connect to database
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
