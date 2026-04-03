@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const sequelize = require("../config/database");
 const Product = require("../models/Product");
 
 const products = [
@@ -59,11 +59,11 @@ const products = [
     description: "Feature-rich smartwatch with fitness tracking",
   },
   {
-    name: "Wireless Headphones",
+    name: "Wireless Headphones Pro",
     price: 500000,
     image:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
-    description: "Premium nich",
+    description: "Premium wireless headphones with noise cancellation",
   },
   {
     name: "Laptop Stand",
@@ -90,16 +90,20 @@ const products = [
 
 const seedProducts = async () => {
   try {
-    //   Delete semua proeucts yang ada
-    await Product.deleteMany({});
+    // Sync database (buat tabel kalau belum ada)
+    await sequelize.sync({ force: false });
 
-    // Inser products baru ke database
-    await Product.insertMany(products);
+    // Delete semua products yang ada
+    await Product.destroy({ where: {} });
 
-    console.log("Products seeded successfully");
-    process.exit();
+    // Insert products baru ke database
+    await Product.bulkCreate(products);
+
+    console.log("✅ Products seeded successfully!");
+    console.log(`📦 Total products: ${products.length}`);
+    process.exit(0);
   } catch (error) {
-    console.error("Error seeding products:", error);
+    console.error("❌ Error seeding products:", error.message);
     process.exit(1);
   }
 };

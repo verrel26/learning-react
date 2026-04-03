@@ -17,7 +17,7 @@ export default function SignUpForm() {
   function onSubmit(data) {
     console.log(data);
     alert(
-      `Account created!, wtih email: ${data.email} and password: ${data.password}`,
+      `Account created!, with username: ${data.username},  email: ${data.email} and password: ${data.password}`,
     );
   }
   ProductCard.propTypes = {
@@ -34,6 +34,22 @@ export default function SignUpForm() {
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>
+            Username
+            <input
+              type="text"
+              placeholder="Username"
+              {...register("username", {
+                required: "Username is required",
+              })}
+            />
+          </label>
+          {errors.username && (
+            <p style={{ color: "crimson" }}>{errors.username.message}</p>
+          )}
+        </div>
+
         <div style={{ marginBottom: "1rem" }}>
           <label>
             Email

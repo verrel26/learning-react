@@ -1,21 +1,20 @@
-// data dummy sementara
-let carts = [];
+const Cart = require("../models/Cart");
 
 // @desc Get user cart
 // @route GET /api/cart
 // @access Private
-
-exports.getCart = (req, res) => {
+exports.getCart = async (req, res) => {
   try {
-    // Cari cart berdasarkan id
-    const userCart = carts.find((c) => c.userId === req.user.id);
+    // Cari cart berdasarkan userId
+    let userCart = await Cart.findOne({
+      where: { userId: req.user.id },
+    });
 
+    // Kalau belum ada cart, buat cart kosong
     if (!userCart) {
-      return res.json({
-        success: true,
-        data: {
-          item: [],
-        },
+      userCart = await Cart.create({
+        userId: req.user.id,
+        items: [],
       });
     }
 
@@ -28,7 +27,7 @@ exports.getCart = (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      messsage: error.message,
+      message: error.message,
     });
   }
 };
@@ -36,44 +35,52 @@ exports.getCart = (req, res) => {
 // @desc Add item to cart
 // @route POST /api/cart/add
 // @access Private
-
-exports.addToCart = (req, res) => {
+exports.addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
+
     // Validasi
     if (!productId || !quantity || quantity < 1) {
       return res.status(400).json({
-        success: true,
+        success: false,
         message: "Product ID and quantity are required",
       });
     }
 
-    //   Cari atau buat cart user
-    let userCart = carts.find((c) => c.userId === req.user.id);
+    // Cari atau buat cart user
+    let userCart = await Cart.findOne({
+      where: { userId: req.user.id },
+    });
 
     if (!userCart) {
-      userCart = {
+      userCart = await Cart.create({
         userId: req.user.id,
         items: [],
-      };
-      carts.push(userCart);
+      });
     }
 
-    //   Cek apakah produk sudah ada di cart
-    const existingItem = userCart.items.find(
+    // Clone items array
+    let items = [...userCart.items];
+
+    // Cek apakah produk sudah ada di cart
+    const existingItemIndex = items.findIndex(
       (item) => item.productId === productId,
     );
 
-    if (existingItem) {
+    if (existingItemIndex > -1) {
       // Update quantity kalau sudah ada
-      existingItem.quantity += quantity;
+      items[existingItemIndex].quantity += quantity;
     } else {
       // Tambah item baru
-      userCart.items.push({
+      items.push({
         productId,
         quantity,
       });
     }
+
+    // Update cart
+    userCart.items = items;
+    await userCart.save();
 
     res.json({
       success: true,
@@ -91,15 +98,14 @@ exports.addToCart = (req, res) => {
 };
 
 // @desc Update cart item quantity
-// @route PUT /api/cart/:productID
+// @route PUT /api/cart/:productId
 // @access Private
-
-exports.updateCartItem = (req, res) => {
+exports.updateCartItem = async (req, res) => {
   try {
     const { productId } = req.params;
     const { quantity } = req.body;
 
-    //   Validasi
+    // Validasi
     if (!quantity || quantity < 1) {
       return res.status(400).json({
         success: false,
@@ -107,30 +113,33 @@ exports.updateCartItem = (req, res) => {
       });
     }
 
-    //   Cari cart user
-    const userCart = carts.find((c) => c.userId === req.user.id);
+    // Cari cart user
+    let userCart = await Cart.findOne({
+      where: { userId: req.user.id },
+    });
 
     if (!userCart) {
-      return res.status(400).json({
+      return res.status(404).json({
         success: false,
         message: "Cart not found",
       });
     }
 
-    //   Cari item
-    const item = userCart.items.find(
-      (i) => i.productId === parseInt(productId),
-    );
+    // Cari item
+    let items = [...userCart.items];
+    const itemIndex = items.findIndex((i) => i.productId === parseInt(productId));
 
-    if (!item) {
+    if (itemIndex === -1) {
       return res.status(404).json({
         success: false,
         message: "Item not found in cart",
       });
     }
 
-    //   Update quantity
-    item.quantity = quantity;
+    // Update quantity
+    items[itemIndex].quantity = quantity;
+    userCart.items = items;
+    await userCart.save();
 
     res.json({
       success: true,
@@ -147,16 +156,18 @@ exports.updateCartItem = (req, res) => {
   }
 };
 
-// @desc remove item from cart
+// @desc Remove item from cart
 // @route DELETE /api/cart/:productId
 // @access Private
-
-exports.removeFromCart = (req, res) => {
+exports.removeFromCart = async (req, res) => {
   try {
     const { productId } = req.params;
 
-    //   Cari cart user
-    const userCart = carts.find((c) => c.userId === req.user.id);
+    // Cari cart user
+    let userCart = await Cart.findOne({
+      where: { userId: req.user.id },
+    });
+
     if (!userCart) {
       return res.status(404).json({
         success: false,
@@ -164,18 +175,21 @@ exports.removeFromCart = (req, res) => {
       });
     }
 
-    //   Filter out item
+    // Filter out item
     const initialLength = userCart.items.length;
-    userCart.items = userCart.items.filter(
+    let items = userCart.items.filter(
       (i) => i.productId !== parseInt(productId),
     );
 
-    if (userCart.items.length === initialLength) {
+    if (items.length === initialLength) {
       return res.status(404).json({
         success: false,
         message: "Item not found in cart",
       });
     }
+
+    userCart.items = items;
+    await userCart.save();
 
     res.json({
       success: true,

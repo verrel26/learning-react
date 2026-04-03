@@ -1,19 +1,20 @@
 // Koneksi ke database MongoDB menggunakan Mongoose
 
-const mongose = require("mongoose");
+const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    const conn = await mongose.connect(
-      process.env.MONGO_URI || "mongodb://localhost:27017/resetshop",
+    const conn = await mongoose.connect(
+      process.env.MONGODB_URI || "mongodb://localhost:27017/resetshop",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       },
     );
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log(`MongoDB Connected! ✅`);
+    console.log(`Database: ${conn.connection.name}`);
   } catch (error) {
-    console.log(`Error: ${error.message}`);
+    console.error(`Error: ${error.message}`);
     process.exit(1);
   }
 };
