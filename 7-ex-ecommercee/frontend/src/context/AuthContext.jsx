@@ -46,9 +46,9 @@ export default function AuthProvider({ children }) {
     loadUser();
   }, []);
 
-  async function signUp(email, password) {
+  async function signUp(username, email, password) {
     try {
-      const response = await registerAPI(email, password);
+      const response = await registerAPI(username, email, password);
 
       if (response.success) {
         const { user, token } = response.data;
@@ -64,9 +64,9 @@ export default function AuthProvider({ children }) {
     }
   }
 
-  async function login(email, password) {
+  async function login(username, password) {
     try {
-      const response = await loginAPI(email, password);
+      const response = await loginAPI(username, password);
 
       if (response.success) {
         const { user, token } = response.data;

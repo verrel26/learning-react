@@ -1,3 +1,5 @@
+// Seed data dummy
+
 const products = [
   {
     id: 1,
@@ -76,6 +78,15 @@ const products = [
       "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=500&fit=crop",
     description:
       "1080p HD webcam with auto-focus and built-in microphone. Ideal for video calls and streaming.",
+  },
+  {
+    id: 10,
+    name: "External Hard Drive",
+    price: 99.99,
+    image:
+      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=500&fit=crop",
+    description:
+      "Portable external hard drive with 2TB storage capacity. Fast data transfer and durable design.",
   },
 ];
 

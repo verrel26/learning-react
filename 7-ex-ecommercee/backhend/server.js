@@ -1,5 +1,5 @@
 require("dotenv").config();
-const connectDB = require("./config/db");
+const sequelize = require("./config/database");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -9,7 +9,21 @@ const cartRoutes = require("./routes/cart");
 
 dotenv.config();
 
-// Connect to database
+// Connect to database dan sync tabel
+const connectDB = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("✅ MySQL Connected!");
+
+    // Sync semua models (buat tabel kalau belum ada)
+    await sequelize.sync({ alter: false });
+    console.log("✅ Database synchronized!");
+  } catch (error) {
+    console.error("❌ Database connection error:", error.message);
+    process.exit(1);
+  }
+};
+
 connectDB();
 
 const app = express();

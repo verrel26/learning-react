@@ -25,9 +25,9 @@ export default function Auth() {
     try {
       let result;
       if (mode === "signup") {
-        result = await signUp(data.email, data.password);
+        result = await signUp(data.username, data.email, data.password);
       } else {
-        result = await login(data.email, data.password);
+        result = await login(data.username, data.password);
       }
 
       if (result.success) {
@@ -71,19 +71,41 @@ export default function Auth() {
           <form className="auth-group" onSubmit={handleSubmit(onSubmit)}>
             {error && <div className="error-message">{error}</div>}
             <div className="form-group">
-              <label className="form-label" htmlFor="email">
-                Email
+              <label className="form-label" htmlFor="username">
+                Username
               </label>
               <input
                 className="form-input"
-                type="email"
-                id="email"
-                {...register("email", { required: "Email is required" })}
+                type="text"
+                id="username"
+                {...register("username", {
+                  required: "Username is required",
+                  minLength: {
+                    value: 3,
+                    message: "Username must be at least 3 characters",
+                  },
+                })}
               />
-              {errors.email && (
-                <span className="form-errors">{errors.email.message}</span>
+              {errors.username && (
+                <span className="form-errors">{errors.username.message}</span>
               )}
             </div>
+            {mode === "signup" && (
+              <div className="form-group">
+                <label className="form-label" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="form-input"
+                  type="email"
+                  id="email"
+                  {...register("email", { required: "Email is required" })}
+                />
+                {errors.email && (
+                  <span className="form-errors">{errors.email.message}</span>
+                )}
+              </div>
+            )}
             <div className="form-group">
               <label className="form-label" htmlFor="password">
                 Password

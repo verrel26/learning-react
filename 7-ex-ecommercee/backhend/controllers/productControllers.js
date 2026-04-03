@@ -1,34 +1,40 @@
-const products = require("../data/products");
+const Product = require("../models/Product");
 
 // @desc Get all products
 // @route GET /api/products
 // @access Public
-
-exports.getAllProducts = (req, res) => {
+exports.getAllProducts = async (req, res) => {
   try {
-    // Logic filter/search (nanti)
+    // Logic filter/search
     const { search } = req.query;
 
-    let filteredProducts = products;
+    let whereClause = {};
 
     if (search) {
-      filteredProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(search.toLowerCase()),
-      );
+      whereClause = {
+        name: {
+          [require("sequelize").Op.like]: `%${search}%`,
+        },
+      };
     }
 
-    res.json(filteredProducts);
+    const products = await Product.findAll({
+      where: whereClause,
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.json(products);
   } catch (error) {
-    res.status(500).json({ message: "error jon" });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// @desc Get single prouduct / (detail product)
+// @desc Get single product (detail product)
 // @route GET /api/products/:id
 // @access Public
-exports.getProductById = (req, res) => {
+exports.getProductById = async (req, res) => {
   try {
-    const product = products.find((p) => p.id === parseInt(req.params.id));
+    const product = await Product.findByPk(req.params.id);
 
     if (!product) {
       return res.status(404).json({ message: "Product not found!" });
